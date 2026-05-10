@@ -1,0 +1,302 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --green: #3db54a;
+  --green-dark: #2e9c40;
+  --green-light: #e8f5e9;
+  --green-text: #3db54a;
+  --text-dark: #1a1a1a;
+  --text-gray: #555;
+  --text-light: #888;
+  --border: #ddd;
+  --bg-light: #f5f5f5;
+  --bg-white: #ffffff;
+  --star: #f5c518;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  font-size: 14px;
+  color: var(--text-dark);
+  background: var(--bg-white);
+  line-height: 1.5;
+}
+
+.container {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+}
+
+.primary-btn {
+  background: var(--green);
+  color: #fff;
+  border: none;
+  padding: 12px 28px;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.primary-btn:hover {
+  background: var(--green-dark);
+}
+
+.link-btn {
+  color: var(--green-text);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.link-btn:hover {
+  text-decoration: underline;
+}
+
+.stars {
+  color: var(--star);
+  font-size: 16px;
+}
+
+/* Search Bar Global */
+.search-banner {
+  background: #f0faf0;
+  border-bottom: 1px solid #dceedd;
+  padding: 10px 0;
+}
+
+.search-banner .container {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.search-banner-label {
+  white-space: nowrap;
+  font-size: 13px;
+  color: var(--text-gray);
+}
+
+.search-banner-input {
+  display: flex;
+  flex: 1;
+  max-width: 400px;
+}
+
+.search-banner-input input {
+  flex: 1;
+  padding: 8px 14px;
+  border: 1px solid #cce8cc;
+  border-right: none;
+  border-radius: 4px 0 0 4px;
+  font-size: 13px;
+  outline: none;
+}
+
+.search-banner-input button {
+  background: var(--green);
+  color: #fff;
+  padding: 8px 18px;
+  border: none;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.search-banner-popular {
+  font-size: 12px;
+  color: var(--text-gray);
+}
+
+.search-banner-popular span {
+  color: var(--green-text);
+  cursor: pointer;
+}
+
+.search-banner-popular span:hover {
+  text-decoration: underline;
+}
+
+/* Page Layout with Sidebar */
+.page-with-sidebar {
+  display: flex;
+  gap: 0;
+  min-height: calc(100vh - 180px);
+}
+
+.sidebar {
+  width: 220px;
+  min-width: 220px;
+  padding: 20px 15px 20px 0;
+  border-right: 1px solid var(--border);
+}
+
+.sidebar-search {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  margin-bottom: 16px;
+  overflow: hidden;
+}
+
+.sidebar-search input {
+  flex: 1;
+  padding: 8px 10px;
+  border: none;
+  outline: none;
+  font-size: 13px;
+}
+
+.sidebar-search button {
+  padding: 8px 10px;
+  color: var(--text-light);
+  background: none;
+}
+
+.sidebar-list {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar-list li {
+  padding: 5px 0;
+  font-size: 13px;
+  color: var(--text-gray);
+  cursor: pointer;
+}
+
+.sidebar-list li:hover {
+  color: var(--green);
+}
+
+.sidebar-list li.active {
+  color: var(--green);
+}
+
+.sidebar-all {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--green);
+  font-size: 13px;
+  font-weight: 500;
+  padding: 5px 0;
+  cursor: pointer;
+}
+
+.sidebar-all svg {
+  width: 16px;
+  height: 16px;
+}
+
+.page-content {
+  flex: 1;
+  padding: 20px 0 20px 30px;
+}
+
+/* Category Section */
+.cat-section {
+  margin-bottom: 32px;
+}
+
+.cat-section-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.cat-section-header h3 {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.cat-icon {
+  font-size: 20px;
+}
+
+.cat-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px 40px;
+}
+
+.cat-grid-item {
+  font-size: 13px;
+  color: var(--text-gray);
+  padding: 3px 0;
+  cursor: pointer;
+}
+
+.cat-grid-item:hover {
+  color: var(--green);
+}
+
+.cat-show-all {
+  color: var(--green);
+  font-size: 13px;
+  cursor: pointer;
+  margin-top: 8px;
+  display: block;
+}
+
+.cat-show-all:hover {
+  text-decoration: underline;
+}
+
+/* Call to action floating btn */
+.fab-call {
+  position: fixed;
+  right: 20px;
+  bottom: 80px;
+  background: var(--green);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 16px;
+  font-size: 12px;
+  cursor: pointer;
+  writing-mode: initial;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  font-weight: 600;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.fab-call:hover {
+  background: var(--green-dark);
+}

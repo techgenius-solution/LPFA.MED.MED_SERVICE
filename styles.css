@@ -1,0 +1,32 @@
+/* src/styles/App.css */
+:root {
+  --primary-green: #5CB82A;
+  --dark-green: #4a9e22;
+  --text-main: #333;
+  --text-muted: #777;
+  --bg-light: #f9f9f9;
+  --border-color: #eee;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', -apple-system, sans-serif;
+  color: var(--text-main);
+  background-color: white;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+button.primary-btn {
+  background-color: var(--primary-green);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+}
