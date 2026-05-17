@@ -1,0 +1,364 @@
+/* responsive.css
+   Mobile-first breakpoints: 481px (small phones), 768px (tablets), 1025px (laptops), 1441px (large desktops)
+   Provides global image responsiveness, smooth transitions, hamburger menu, and mobile navigation.
+*/
+
+/* Make images and media scale responsively */
+img,
+picture,
+video,
+.responsive-img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+/* Prevent horizontal scroll */
+html,
+body {
+  overflow-x: hidden;
+}
+
+/* Smooth transitions for interactive elements */
+a,
+button,
+input,
+textarea,
+select,
+img {
+  transition: color 0.15s ease, background-color 0.2s ease, border-color 0.15s ease, box-shadow 0.2s ease, transform 0.15s ease;
+}
+
+/* Hamburger toggle visuals */
+.hamburger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  position: relative;
+  z-index: 1001;
+}
+
+.hamburger .bar {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--text-dark);
+  position: relative;
+  transition: transform 0.25s ease, opacity 0.2s ease, background 0.2s ease;
+}
+
+.hamburger .bar::before,
+.hamburger .bar::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 22px;
+  height: 2px;
+  background: inherit;
+  transition: transform 0.25s ease, opacity 0.2s ease;
+}
+
+.hamburger .bar::before {
+  top: -6px;
+}
+
+.hamburger .bar::after {
+  top: 6px;
+}
+
+.hamburger.open .bar {
+  background: transparent;
+}
+
+.hamburger.open .bar::before {
+  transform: translateY(6px) rotate(45deg);
+}
+
+.hamburger.open .bar::after {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+/* Mobile navigation overlay */
+.mobile-nav {
+  display: none;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  background: var(--bg-white);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  padding: clamp(0.75rem, 2vw, 1rem) clamp(1rem, 3vw, 1.5rem);
+  z-index: 999;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.28s ease, opacity 0.28s ease;
+}
+
+.mobile-nav.open {
+  display: block;
+  max-height: 500px;
+  opacity: 1;
+  overflow-y: auto;
+}
+
+/* Mobile nav inner layout */
+.mobile-nav-inner {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.5rem, 1.5vw, 0.75rem);
+}
+
+.mobile-nav-inner a,
+.mobile-nav-inner button {
+  padding: clamp(0.5rem, 1.5vw, 0.75rem) 0;
+  font-size: clamp(0.875rem, 2vw, 1rem);
+  text-align: left;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: var(--text-dark);
+  transition: color 0.15s ease;
+}
+
+.mobile-nav-inner a:hover,
+.mobile-nav-inner button:hover {
+  color: var(--green);
+}
+
+/* Breakpoints (mobile-first) */
+@media (max-width: 767px) {
+  /* Extra small phones (320px - 480px) */
+  .hamburger {
+    display: inline-flex;
+  }
+
+  .mobile-nav {
+    display: none;
+  }
+}
+
+@media (min-width: 481px) {
+  /* Small phones to large phones (481px - 767px) */
+  .container {
+    padding: 0 clamp(0.75rem, 3vw, 1.5rem);
+  }
+
+  body {
+    font-size: 0.95rem;
+  }
+}
+
+@media (min-width: 768px) {
+  /* Tablets (768px - 1024px) */
+  .container {
+    max-width: 720px;
+    padding: 0 1.5rem;
+  }
+
+  .hamburger {
+    display: none;
+  }
+
+  .mobile-nav {
+    display: none !important;
+  }
+
+  body {
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 1025px) {
+  /* Laptops (1025px - 1440px) */
+  .container {
+    max-width: 1000px;
+    padding: 0 1.5rem;
+  }
+
+  body {
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 1441px) {
+  /* Large desktops (1441px+) */
+  .container {
+    max-width: 1320px;
+    padding: 0 2rem;
+  }
+
+  body {
+    font-size: 1rem;
+  }
+}
+
+/* Responsive utilities */
+@media (max-width: 480px) {
+  .hide-mobile {
+    display: none !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .show-mobile {
+    display: none !important;
+  }
+}
+
+/* Touch-friendly adjustments for mobile */
+@media (max-width: 480px) {
+  button,
+  a,
+  input,
+  textarea,
+  select {
+    min-height: 44px;
+  }
+
+  .primary-btn,
+  .login-btn,
+  .form-submit-btn {
+    min-height: 44px;
+    padding: clamp(0.5rem, 1.5vw, 0.75rem) clamp(1rem, 3vw, 1.5rem);
+  }
+}
+
+/* Responsive spacing utilities */
+.mt-responsive {
+  margin-top: clamp(0.75rem, 3vw, 2rem);
+}
+
+.mb-responsive {
+  margin-bottom: clamp(0.75rem, 3vw, 2rem);
+}
+
+.p-responsive {
+  padding: clamp(0.75rem, 3vw, 2rem);
+}
+
+.px-responsive {
+  padding-left: clamp(0.75rem, 3vw, 2rem);
+  padding-right: clamp(0.75rem, 3vw, 2rem);
+}
+
+.py-responsive {
+  padding-top: clamp(0.75rem, 3vw, 2rem);
+  padding-bottom: clamp(0.75rem, 3vw, 2rem);
+}
+
+/* Responsive text utilities */
+.text-responsive-sm {
+  font-size: clamp(0.75rem, 2vw, 0.875rem);
+}
+
+.text-responsive-base {
+  font-size: clamp(0.875rem, 2.5vw, 1rem);
+}
+
+.text-responsive-lg {
+  font-size: clamp(1rem, 3vw, 1.25rem);
+}
+
+.text-responsive-xl {
+  font-size: clamp(1.125rem, 3.5vw, 1.5rem);
+}
+
+.text-responsive-2xl {
+  font-size: clamp(1.25rem, 4vw, 1.75rem);
+}
+
+.text-responsive-3xl {
+  font-size: clamp(1.5rem, 4.5vw, 2.25rem);
+}
+
+.text-responsive-4xl {
+  font-size: clamp(1.75rem, 5vw, 2.5rem);
+}
+
+/* Responsive grid utilities */
+.grid-responsive-2 {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 481px) {
+  .grid-responsive-2 {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 768px) {
+  .grid-responsive-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1025px) {
+  .grid-responsive-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.grid-responsive-3 {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .grid-responsive-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1025px) {
+  .grid-responsive-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.grid-responsive-4 {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .grid-responsive-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1025px) {
+  .grid-responsive-4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Responsive gap utilities */
+.gap-responsive {
+  gap: clamp(0.75rem, 2vw, 1.5rem);
+}
+
+.gap-responsive-lg {
+  gap: clamp(1rem, 3vw, 2.5rem);
+}
+
+/* Responsive flex direction */
+@media (max-width: 767px) {
+  .flex-direction-responsive {
+    flex-direction: column;
+  }
+}
+
+@media (min-width: 768px) {
+  .flex-direction-responsive {
+    flex-direction: row;
+  }
+}

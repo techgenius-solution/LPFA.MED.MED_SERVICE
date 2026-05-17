@@ -10,7 +10,6 @@ import '../styles/Home.css';
 
 const Home = () => {
   const navigate = useNavigate();
-  const [checkupTab, setCheckupTab] = useState('male');
 
   return (
     <div>
@@ -93,9 +92,9 @@ const Home = () => {
                 <h3>Check Up</h3>
               </div>
               <div className="checkup-tabs">
-                <span className={`checkup-tab ${checkupTab === 'male' ? 'active' : ''}`} onClick={() => setCheckupTab('male')}>Мужской</span>
-                <span className={`checkup-tab ${checkupTab === 'female' ? 'active' : ''}`} onClick={() => setCheckupTab('female')}>Женский</span>
-                <span className={`checkup-tab ${checkupTab === 'kids' ? 'active' : ''}`} style={{ color: '#3db54a' }} onClick={() => setCheckupTab('kids')}>Детский</span>
+                <span className="checkup-tab active">Мужской</span>
+                <span className="checkup-tab">Женский</span>
+                <span className="checkup-tab" style={{ color: '#3db54a' }}>Детский</span>
               </div>
               <div className="dir-items">
                 <span className="dir-item" style={{ color: '#3db54a' }}>Специализированная</span>

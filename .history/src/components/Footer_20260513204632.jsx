@@ -66,8 +66,8 @@ const Footer = () => {
         </div>
 
         <div className="footer-bottom">
-          <span>Tech Genius Solutions © 2026</span>
-          <span>Tech Genius Solutions © 2026</span>
+          <span>Tech Genius Solution © 2026</span>
+          <span>Tech Genius Solution © 2026</span>
         </div>
       </div>
     </footer>
