@@ -552,28 +552,25 @@ const Home = () => {
           </div>
 
           <div className="checkup-pricing">
-            {CHECKUP_PACKS.map((p, i) => {
-              const featured = i === 1;
-              return (
-                <article key={p.name} className={`pricing-card${featured ? ' featured' : ''}`}>
-                  {p.badge && <span className="pricing-badge">{p.badge}</span>}
-                  <h3>{p.name}</h3>
-                  <p className="pricing-desc">{p.desc}</p>
-                  <div className="pricing-price">
-                    <strong>{p.price}</strong>
-                    <span>₽ / программа</span>
-                  </div>
-                  <ul className="pricing-list">
-                    {p.bullets.map((b) => (
-                      <li key={b}><span className="pricing-check">{Icon.check}</span>{b}</li>
-                    ))}
-                  </ul>
-                  <button type="button" className={`pricing-cta ${featured ? 'primary-btn' : 'btn-ghost'}`}>
-                    Выбрать пакет {Icon.arrow}
-                  </button>
-                </article>
-              );
-            })}
+            {CHECKUP_PACKS.map((p, i) => (
+              <div key={p.name} className={`pricing-card ${i === 1 ? 'featured' : ''}`}>
+                {p.badge && <span className="pricing-badge">{p.badge}</span>}
+                <h3>{p.name}</h3>
+                <p className="pricing-desc">{p.desc}</p>
+                <div className="pricing-price">
+                  <strong>{p.price}</strong>
+                  <span>₽ / программа</span>
+                </div>
+                <ul className="pricing-list">
+                  {p.bullets.map((b) => (
+                    <li key={b}><span className="pricing-check">{Icon.check}</span>{b}</li>
+                  ))}
+                </ul>
+                <button className={i === 1 ? 'primary-btn' : 'btn-ghost'} style={{ width: '100%', justifyContent: 'center' }}>
+                  Выбрать пакет {Icon.arrow}
+                </button>
+              </div>
+            ))}
           </div>
 
           <div className="checkup-timeline">
@@ -753,7 +750,7 @@ const Home = () => {
                 <input type="checkbox" defaultChecked />
                 <span>Согласен на обработку персональных данных по ФЗ-152</span>
               </label>
-              <button type="submit" className="primary-btn" style={{ width: '100%', justifyContent: 'center' }}>
+              <button type="submit" className="primary-btn" style={{ %', justifyContent: 'center', height: '50px' }}>
                 Отправить заявку {Icon.arrow}
               </button>
             </form>
