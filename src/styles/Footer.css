@@ -1,126 +1,220 @@
+/* ==================================================================
+   SmartMed Service · Footer
+   ================================================================== */
 .main-footer {
-  background: #1a1a1a;
-  color: #ccc;
-  padding: 30px 0 16px;
-  margin-top: 60px;
+  position: relative;
+  margin-top: clamp(60px, 8vw, 100px);
+  padding: clamp(48px, 6vw, 72px) 0 24px;
+  background: linear-gradient(180deg, #0b1220 0%, #0a1530 100%);
+  color: #cfd8ea;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.footer-bg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(800px 380px at 80% 0%, rgba(34, 211, 238, 0.18), transparent 60%),
+    radial-gradient(700px 360px at 10% 100%, rgba(10, 132, 255, 0.18), transparent 60%);
+  pointer-events: none;
 }
 
 .footer-grid {
   display: grid;
-  grid-template-columns: auto 1fr 1fr 1fr auto;
-  gap: 30px;
-  align-items: start;
-  margin-bottom: 20px;
+  grid-template-columns: 1.4fr 1fr 1fr 1.2fr;
+  gap: clamp(28px, 4vw, 56px);
+  align-items: flex-start;
+  margin-bottom: 36px;
+}
+
+/* Brand block */
+.footer-brand {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
 }
 
 .footer-logo-wrap {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 12px;
+  color: #fff;
+  text-decoration: none;
 }
 
-.footer-logo-icon {
-  width: 36px;
-  height: 36px;
-  background: var(--green);
-  border-radius: 4px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.footer-logo-icon-inner {
-  width: 26px;
-  height: 26px;
+.footer-logo-mark {
+  width: 42px;
+  height: 42px;
+  background: var(--grad-primary);
+  border-radius: 14px;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2px;
-}
-
-.footer-logo-icon-inner span {
-  background: rgba(255,255,255,0.8);
-  border-radius: 1px;
+  place-items: center;
+  box-shadow: 0 12px 30px rgba(10, 132, 255, 0.45);
 }
 
 .footer-logo-text {
-  font-size: 9px;
-  font-weight: 700;
-  color: #fff;
-  line-height: 1.2;
-  text-transform: uppercase;
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+  gap: 4px;
 }
 
 .footer-logo-text strong {
-  display: block;
-  font-size: 11px;
-  color: var(--green);
+  font-family: 'Manrope', sans-serif;
+  font-size: 18px;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.01em;
 }
 
+.footer-logo-text span {
+  font-size: 11px;
+  color: #94a8d0;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-weight: 600;
+}
+
+.footer-tagline {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #94a8d0;
+  max-width: 320px;
+}
+
+.footer-trust {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #36e0a3;
+  padding: 8px 14px;
+  background: rgba(54, 224, 163, 0.1);
+  border: 1px solid rgba(54, 224, 163, 0.25);
+  border-radius: var(--r-pill);
+  width: fit-content;
+}
+
+.footer-trust svg { flex-shrink: 0; }
+
+/* Columns */
 .footer-col h4 {
   color: #fff;
-  font-size: 13px;
-  font-weight: 600;
-  margin-bottom: 12px;
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
 }
 
 .footer-col ul {
   list-style: none;
   padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .footer-col ul li {
-  margin-bottom: 6px;
+  font-size: 13.5px;
+  color: #9fb0d0;
+  line-height: 1.5;
 }
 
 .footer-col ul li a {
-  color: #999;
-  font-size: 12px;
+  color: #9fb0d0;
   text-decoration: none;
-  transition: color 0.15s;
+  transition: color var(--t-fast) ease, transform var(--t-fast) ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .footer-col ul li a:hover {
-  color: var(--green);
-}
-
-.footer-social {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-}
-
-.social-icon {
-  width: 32px;
-  height: 32px;
-  background: #333;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 14px;
-  color: #ccc;
-  cursor: pointer;
-  transition: background 0.2s;
-  text-decoration: none;
-}
-
-.social-icon:hover {
-  background: var(--green);
   color: #fff;
 }
 
-.footer-bottom {
-  border-top: 1px solid #333;
-  padding-top: 14px;
-  display: flex;
-  justify-content: space-between;
-  font-size: 11px;
-  color: #666;
+.footer-link-icon svg {
+  color: var(--cyan);
+  flex-shrink: 0;
 }
 
-@media (max-width: 768px) {
+/* Social row */
+.footer-social {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-top: 22px;
+  flex-wrap: wrap;
+}
+
+.social-icon {
+  width: 36px;
+  height: 36px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #cfd8ea;
+  text-decoration: none;
+  transition: background var(--t-base) ease, color var(--t-base) ease, transform var(--t-base) ease, border-color var(--t-base) ease;
+}
+
+.social-icon:hover {
+  background: var(--grad-primary);
+  border-color: transparent;
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+/* Bottom bar */
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  color: #7d8cab;
+}
+
+.footer-bottom-links {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.footer-bottom-links a {
+  color: #94a8d0;
+  text-decoration: none;
+  transition: color var(--t-fast) ease;
+}
+
+.footer-bottom-links a:hover { color: #fff; }
+.footer-bottom-links .dot { color: rgba(255,255,255,0.25); }
+
+/* Responsive */
+@media (max-width: 960px) {
   .footer-grid {
     grid-template-columns: 1fr 1fr;
-    gap: 20px;
+    gap: 36px 28px;
+  }
+  .footer-brand { grid-column: 1 / -1; }
+}
+
+@media (max-width: 560px) {
+  .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+  .footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
   }
 }

@@ -35,7 +35,7 @@ const CheckUp = () => {
               {checkupGroups.map(group => (
                 <div key={group.id} className="treat-cat">
                   <div className="treat-cat-header">
-                    <span className="treat-cat-icon" style={{ color: '#3db54a' }}>
+                    <span className="treat-cat-icon">
                       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                         <polyline points="20 6 9 17 4 12"/>
                       </svg>

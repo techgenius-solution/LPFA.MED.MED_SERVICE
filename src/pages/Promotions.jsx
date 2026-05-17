@@ -70,7 +70,7 @@ export const PromotionDetail = () => {
               <button className="promo-submit-btn">Отправить запрос &gt;</button>
             </Link>
 
-            <div style={{ marginTop: '40px' }}>
+            <div className="promo-related">
               <div className="promo-related-title">Другие акции</div>
               <div className="promo-related-grid">
                 {related.map(r => (
