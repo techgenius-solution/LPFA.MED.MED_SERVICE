@@ -751,6 +751,181 @@
 .verify-badge.ok      { background: var(--mint-soft); color: #0e7a5c; }
 .verify-badge.pending { background: #fff5e6; color: var(--warn); }
 
+/* ============ Dashboard ============ */
+.dash-main {
+  background: linear-gradient(180deg, #ffffff 0%, #f7faff 100%);
+  border: 1px solid var(--line);
+  border-radius: var(--r-xl);
+  padding: clamp(28px, 4vw, 48px);
+  box-shadow: var(--shadow-sm);
+  position: relative;
+  overflow: hidden;
+}
+
+.dash-main::before {
+  content: '';
+  position: absolute;
+  top: -120px;
+  right: -120px;
+  width: 360px;
+  height: 360px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(10, 132, 255, 0.12), transparent 65%);
+  pointer-events: none;
+}
+
+.dash-head {
+  position: relative;
+  margin-bottom: clamp(28px, 3vw, 40px);
+  max-width: 720px;
+}
+
+.dash-head h2 {
+  font-family: 'Manrope', sans-serif;
+  font-size: clamp(26px, 3vw, 38px);
+  font-weight: 800;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: var(--ink-900);
+  margin: 14px 0 12px;
+}
+
+.dash-lede {
+  color: var(--ink-500);
+  font-size: 15px;
+  line-height: 1.6;
+  max-width: 560px;
+}
+
+.dash-grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+
+.dash-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px 22px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--r-pill);
+  text-decoration: none;
+  color: inherit;
+  overflow: hidden;
+  isolation: isolate;
+  transition:
+    transform 0.35s var(--ease-out),
+    box-shadow 0.35s ease,
+    border-color 0.3s ease;
+}
+
+.dash-card:hover {
+  transform: translateY(-4px);
+  border-color: transparent;
+  box-shadow: var(--shadow-md);
+}
+
+.dash-card-glow {
+  position: absolute;
+  inset: 0;
+  background: var(--grad-glass);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  z-index: -1;
+}
+
+.dash-card:hover .dash-card-glow { opacity: 1; }
+
+.dash-card-icon {
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  border-radius: 16px;
+  display: grid;
+  place-items: center;
+  background: var(--primary-50);
+  color: var(--primary);
+  transition: transform 0.35s ease, background 0.3s ease;
+}
+
+.dash-card-icon svg { width: 24px; height: 24px; }
+
+.dash-card:hover .dash-card-icon { transform: scale(1.06) rotate(-3deg); }
+
+.dash-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  flex: 1;
+}
+
+.dash-card-body strong {
+  font-family: 'Manrope', sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--primary);
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+
+.dash-card-body span {
+  font-size: 13px;
+  color: var(--ink-500);
+  line-height: 1.4;
+}
+
+.dash-card-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  color: var(--primary);
+  background: var(--primary-50);
+  opacity: 0;
+  transform: translateX(-6px);
+  transition: opacity 0.3s ease, transform 0.3s var(--ease-out), background 0.3s ease;
+}
+
+.dash-card-cta svg { width: 14px; height: 14px; }
+
+.dash-card:hover .dash-card-cta {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Per-card accents */
+.dash-a .dash-card-icon { background: var(--primary-50);  color: var(--primary); }
+.dash-a .dash-card-body strong { color: var(--primary); }
+
+.dash-b .dash-card-icon { background: var(--mint-soft);   color: #0e9d80; }
+.dash-b .dash-card-body strong { color: #0e9d80; }
+.dash-b .dash-card-cta { background: var(--mint-soft); color: #0e9d80; }
+
+.dash-c .dash-card-icon { background: #fff4dc;            color: #c47a0c; }
+.dash-c .dash-card-body strong { color: #c47a0c; }
+.dash-c .dash-card-cta { background: #fff4dc; color: #c47a0c; }
+
+.dash-d .dash-card-icon { background: var(--violet-soft); color: #6b48f1; }
+.dash-d .dash-card-body strong { color: #6b48f1; }
+.dash-d .dash-card-cta { background: var(--violet-soft); color: #6b48f1; }
+
+@media (max-width: 1100px) {
+  .dash-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 560px) {
+  .dash-grid { grid-template-columns: 1fr; }
+  .dash-card { border-radius: var(--r-lg); }
+}
+
 /* ============ User Dropdown (in header) ============ */
 .user-dd { position: relative; }
 
