@@ -43,8 +43,8 @@ export const BlogArticle = () => {
       <div className="container">
         <div className="article-layout">
           <div className="article-main">
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px' }}>
-              <h1 className="article-title" style={{ marginBottom: 0 }}>{post.title}</h1>
+            <div className="article-head">
+              <h1 className="article-title">{post.title}</h1>
               <Link to="/blog" className="article-back-link">← Вернуться назад</Link>
             </div>
             <div className="article-image">

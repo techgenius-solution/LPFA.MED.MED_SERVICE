@@ -15,8 +15,9 @@ const AboutUs = () => {
             <div className="about-main">
               <div className="about-image">
                 <img
-                  src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=600&h=400&fit=crop"
+                  src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=1200&h=720&fit=crop"
                   alt="О компании Smart Med Service"
+                  loading="lazy"
                 />
               </div>
               <div className="about-text">
@@ -25,19 +26,19 @@ const AboutUs = () => {
                 <p>Ваше пребывание в Корее наша забота. Мы предоставим полный спектр услуг от встречи в аэропорту до получения Ваших медицинских документов после Вашего отбытия домой.</p>
               </div>
 
-              <button
-                className="primary-btn"
-                style={{ marginTop: '32px', padding: '12px 24px', fontSize: '13px' }}
-              >
-                📞 ЗАКАЗАТЬ ЗВОНОК
-              </button>
+              <Link to="/contacts" className="primary-btn" style={{ marginTop: '28px' }}>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.72 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.35 1.85.59 2.81.72A2 2 0 0 1 22 16.92Z"/>
+                </svg>
+                Заказать звонок
+              </Link>
             </div>
 
             <div className="about-sidebar">
               <div className="about-sidebar-contacts">
                 <h4>Контакты</h4>
                 <p>Тел.: +7 (701) 081-6040</p>
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+7 (727) 081-6040</p>
+                <p>+7 (727) 081-6040</p>
                 <p>Email: <a href="mailto:info@smartmedservice.com">info@smartmedservice.com</a></p>
               </div>
             </div>

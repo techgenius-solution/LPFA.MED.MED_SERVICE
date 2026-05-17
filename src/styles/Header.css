@@ -1,133 +1,487 @@
+/* =========================================================
+   Header — adaptive nav with dynamic "More" overflow.
+   Items are measured off-screen and visible count is
+   recomputed on resize (ResizeObserver). Never overflows.
+   ========================================================= */
+
+.header-spacer { height: 84px; }
+
 .main-header {
-  background: #fff;
-  border-bottom: 1px solid var(--border);
-  position: sticky;
-  top: 0;
+  position: fixed;
+  top: clamp(6px, 1vw, 14px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - clamp(12px, 2vw, 28px));
+  max-width: 1280px;
   z-index: 1000;
+  background: var(--glass-strong);
+  backdrop-filter: saturate(180%) blur(18px);
+  -webkit-backdrop-filter: saturate(180%) blur(18px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--r-pill);
+  box-shadow: 0 8px 30px rgba(15, 30, 60, 0.06);
+  transition: top 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+  box-sizing: border-box;
+}
+
+.main-header.is-scrolled {
+  top: clamp(4px, 0.6vw, 8px);
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 14px 40px rgba(15, 30, 60, 0.1);
 }
 
 .header-top {
   display: flex;
   align-items: center;
-  gap: 24px;
-  padding: 12px 20px;
+  gap: clamp(8px, 1.2vw, 18px);
+  padding: 10px clamp(12px, 1.6vw, 20px);
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
 }
 
+/* ---- Logo ---- */
 .logo-wrap {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   text-decoration: none;
   flex-shrink: 0;
+  min-width: 0;
 }
 
-.logo-icon {
-  width: 40px;
-  height: 40px;
-  background: var(--green);
-  border-radius: 4px;
+.logo-mark {
+  width: clamp(32px, 2.6vw, 38px);
+  height: clamp(32px, 2.6vw, 38px);
+  flex-shrink: 0;
+  background: var(--grad-primary);
+  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: column;
-  padding: 4px;
-}
-
-.logo-icon-inner {
-  width: 100%;
-  height: 100%;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2px;
-}
-
-.logo-icon-inner span {
-  background: rgba(255,255,255,0.8);
-  border-radius: 1px;
+  box-shadow: var(--shadow-glow);
 }
 
 .logo-text {
-  font-size: 10px;
-  font-weight: 700;
-  color: var(--text-dark);
-  line-height: 1.2;
-  text-transform: uppercase;
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+  min-width: 0;
 }
 
 .logo-text strong {
-  display: block;
-  font-size: 12px;
-  color: var(--green);
+  font-family: 'Manrope', sans-serif;
+  font-size: clamp(14px, 1.1vw, 16px);
+  font-weight: 800;
+  color: var(--ink-900);
+  letter-spacing: -0.01em;
+  white-space: nowrap;
 }
 
+.logo-text span {
+  margin-top: 4px;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--ink-400);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  white-space: nowrap;
+}
+
+/* ---- Primary navigation ---- */
 .top-nav {
   display: flex;
   align-items: center;
-  gap: 4px;
-  flex: 1;
+  gap: 2px;
+  flex: 1 1 auto;
+  min-width: 0;
+  justify-content: center;
+  position: relative;
 }
 
-.top-nav a {
-  font-size: 13px;
-  color: var(--text-dark);
-  padding: 6px 8px;
-  border-radius: 3px;
-  white-space: nowrap;
-  transition: color 0.15s;
-}
-
-.top-nav a:hover {
-  color: var(--green);
-}
-
-.top-nav a.active {
-  color: var(--green);
+.top-nav > a {
+  position: relative;
+  font-size: clamp(12px, 0.95vw, 13.5px);
   font-weight: 500;
-}
-
-.nav-akcii {
-  color: var(--green) !important;
-}
-
-.login-btn {
-  background: var(--green);
-  color: #fff !important;
-  border: none;
-  padding: 8px 18px;
-  border-radius: 4px;
-  font-size: 13px;
-  cursor: pointer;
+  color: var(--ink-700);
+  padding: 9px clamp(8px, 0.8vw, 14px);
+  border-radius: var(--r-pill);
   white-space: nowrap;
+  flex-shrink: 0;
+  transition: color 0.2s ease, background 0.2s ease;
+}
+
+.top-nav > a::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 4px;
+  width: 0;
+  height: 2px;
+  background: var(--grad-primary);
+  transition: width 0.25s ease, left 0.25s ease;
+  border-radius: 2px;
+}
+
+.top-nav > a:hover,
+.top-nav > a.active {
+  color: var(--primary);
+  background: var(--primary-50);
+}
+
+.top-nav > a.active::after {
+  width: 22px;
+  left: calc(50% - 11px);
+}
+
+.top-nav > a.nav-akcii {
+  color: #d63f6a;
+  background: linear-gradient(135deg, #fff0f4 0%, #ffe4ec 100%);
+}
+.top-nav > a.nav-akcii::before {
+  content: '🔥';
+  margin-right: 4px;
+  font-size: 11px;
+}
+
+/* ---- "More" overflow dropdown ---- */
+.nav-more {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.nav-more-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: inherit;
+  font-size: clamp(12px, 0.95vw, 13.5px);
+  font-weight: 500;
+  color: var(--ink-700);
+  padding: 9px clamp(8px, 0.8vw, 14px);
+  border-radius: var(--r-pill);
+  background: transparent;
+  border: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color 0.2s ease, background 0.2s ease;
+}
+
+.nav-more-btn svg {
+  transition: transform 0.2s ease;
+}
+
+.nav-more-btn.open svg {
+  transform: rotate(180deg);
+}
+
+.nav-more-btn:hover,
+.nav-more-btn.open,
+.nav-more-btn.has-active {
+  color: var(--primary);
+  background: var(--primary-50);
+}
+
+.nav-more-panel {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  min-width: 240px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  box-shadow: 0 18px 50px rgba(15, 30, 60, 0.14);
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  z-index: 1050;
+  animation: navMoreIn 0.18s ease;
+}
+
+@keyframes navMoreIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.nav-more-item {
+  display: block;
+  padding: 10px 12px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--ink-700);
+  border-radius: 10px;
+  white-space: nowrap;
+  text-decoration: none;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.nav-more-item:hover,
+.nav-more-item.active {
+  background: var(--primary-50);
+  color: var(--primary);
+}
+
+.nav-more-item.is-akcii::before {
+  content: '🔥';
+  margin-right: 6px;
+  font-size: 12px;
+}
+
+.nav-more-item.is-akcii {
+  color: #d63f6a;
+}
+
+.nav-more-item.is-akcii:hover {
+  background: #fff0f4;
+  color: #d63f6a;
+}
+
+/* ---- Hidden measurement row (kept out of layout) ---- */
+.nav-measure {
+  position: absolute;
+  top: -9999px;
+  left: 0;
+  visibility: hidden;
+  pointer-events: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  white-space: nowrap;
+}
+
+.nav-measure .measure-item,
+.nav-measure .measure-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: inherit;
+  font-size: clamp(12px, 0.95vw, 13.5px);
+  font-weight: 500;
+  padding: 9px clamp(8px, 0.8vw, 14px);
+  white-space: nowrap;
+}
+
+.nav-measure .measure-item.nav-akcii::before {
+  content: '🔥';
+  margin-right: 4px;
+  font-size: 11px;
+}
+
+/* ---- Auth / phone / CTA cluster ---- */
+.header-auth {
   display: flex;
   align-items: center;
+  gap: clamp(4px, 0.6vw, 10px);
+  flex-shrink: 0;
+  min-width: 0;
+}
+
+.header-phone {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: clamp(12px, 0.9vw, 13px);
+  font-weight: 600;
+  color: var(--ink-700);
+  padding: 8px 10px;
+  border-radius: var(--r-pill);
+  white-space: nowrap;
+  transition: color 0.2s ease, background 0.2s ease;
+}
+
+.header-phone:hover {
+  color: var(--primary);
+  background: var(--primary-50);
+}
+
+.login-link {
+  font-size: clamp(12px, 0.9vw, 13px);
+  font-weight: 600;
+  color: var(--ink-700);
+  padding: 9px 14px;
+  border-radius: var(--r-pill);
+  white-space: nowrap;
+  transition: color 0.2s ease, background 0.2s ease;
+}
+.login-link:hover {
+  color: var(--primary);
+  background: var(--primary-50);
+}
+
+.btn-cta {
+  display: inline-flex;
+  align-items: center;
   gap: 6px;
-  margin-left: auto;
-  text-decoration: none;
+  background: var(--grad-primary);
+  color: #fff !important;
+  font-size: clamp(12px, 0.95vw, 13.5px);
+  font-weight: 700;
+  padding: 10px clamp(12px, 1.2vw, 18px);
+  border-radius: var(--r-pill);
+  box-shadow: var(--shadow-glow);
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
 }
 
-.login-btn:hover {
-  background: var(--green-dark);
+.btn-cta:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.06);
+  box-shadow: 0 20px 50px rgba(10, 132, 255, 0.32);
 }
 
-.login-icon {
-  font-size: 14px;
+/* ---- Hamburger ---- */
+.hamburger {
+  display: none;
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 4px;
+  cursor: pointer;
+}
+.hamburger span {
+  display: block;
+  width: 18px;
+  height: 2px;
+  background: var(--ink-700);
+  border-radius: 2px;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+.hamburger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+/* =========================================================
+   Mobile drawer
+   ========================================================= */
+.mobile-drawer {
+  position: fixed;
+  inset: 0;
+  background: rgba(11, 18, 32, 0.45);
+  backdrop-filter: blur(6px);
+  z-index: 1100;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+.mobile-drawer.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+.mobile-drawer-panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: min(360px, 88vw);
+  max-width: 100%;
+  background: #fff;
+  padding: 20px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+  box-shadow: -20px 0 60px rgba(15, 30, 60, 0.18);
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+.mobile-drawer.open .mobile-drawer-panel {
+  transform: translateX(0);
+}
+.mobile-drawer-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line);
+}
+.mobile-drawer-close {
+  font-size: 28px;
+  color: var(--ink-700);
+  line-height: 1;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.mobile-nav-link {
+  padding: 12px 14px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink-700);
+  border-radius: var(--r-md);
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.mobile-nav-link:hover, .mobile-nav-link.active {
+  background: var(--primary-50);
+  color: var(--primary);
+}
+.mobile-drawer-auth {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 18px;
 }
 
-@media (max-width: 900px) {
-  .top-nav a {
+/* =========================================================
+   Responsive breakpoints
+   Dynamic "More" handles overflow on desktop/tablet;
+   below 760px we switch to the hamburger drawer.
+   ========================================================= */
+
+/* Hide phone number text earlier — it's a long non-essential element */
+@media (max-width: 1280px) {
+  .header-phone span { display: none; }
+}
+
+/* Drop the standalone "Войти" link to free space for nav items */
+@media (max-width: 880px) {
+  .login-link { display: none; }
+}
+
+/* Mobile cutover: hide dynamic nav, show hamburger drawer */
+@media (max-width: 760px) {
+  .top-nav { display: none; }
+  .hamburger { display: inline-flex; }
+  .header-auth { margin-left: auto; }
+  .header-spacer { height: 76px; }
+  .main-header { top: 8px; }
+  .header-top { padding: 8px 12px; gap: 8px; }
+  .logo-text span { display: none; }
+  .header-phone { display: none; }
+  .btn-cta {
+    padding: 9px 14px;
+    font-size: 12.5px;
+  }
+}
+
+/* Phone */
+@media (max-width: 480px) {
+  .header-spacer { height: 70px; }
+  .header-top { padding: 7px 10px; gap: 6px; }
+  .logo-mark { width: 34px; height: 34px; }
+  .logo-text strong { font-size: 14px; }
+  .btn-cta {
+    padding: 8px 12px;
     font-size: 12px;
-    padding: 6px 5px;
+    gap: 4px;
   }
+  .btn-cta svg { display: none; }
+  .hamburger { width: 38px; height: 38px; }
 }
 
-@media (max-width: 768px) {
-  .header-top {
-    flex-wrap: wrap;
-  }
-
-  .top-nav {
-    flex-wrap: wrap;
-    order: 3;
-    width: 100%;
-  }
+/* Very narrow phones (≤360px): hide logo text, keep mark + CTA + hamburger */
+@media (max-width: 360px) {
+  .logo-text { display: none; }
+  .btn-cta { padding: 7px 10px; font-size: 11.5px; }
 }

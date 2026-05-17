@@ -34,7 +34,7 @@ const ClinicDetail = () => {
                   <StarRating rating={clinic.rating} />
                   <span className="clinic-review-count">{clinic.reviewCount} отзывов</span>
                 </div>
-                <div className="clinic-tabs" style={{ borderBottom: 'none', marginBottom: 0 }}>
+                <div className="clinic-tabs clinic-tabs-inline">
                   {['about', 'prices', 'doctors', 'reviews'].map(tab => {
                     const labels = { about: 'О больнице', prices: 'Цены', doctors: 'Доктора', reviews: 'Отзывы' };
                     return (
@@ -42,7 +42,6 @@ const ClinicDetail = () => {
                         key={tab}
                         className={`clinic-tab ${activeTab === tab ? 'active' : ''}`}
                         onClick={() => setActiveTab(tab)}
-                        style={{ padding: '8px 16px' }}
                       >
                         {labels[tab]}
                       </button>
